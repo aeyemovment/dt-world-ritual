@@ -1,0 +1,139 @@
+{
+  "report": "DTWR-TR-001",
+  "snapshot": "2026-09-06T22:40:37.676Z",
+  "clause": "Research Use Clause",
+  "stats": {
+    "n": 6,
+    "deepest": 1,
+    "rooted": 6,
+    "recursed": 0,
+    "seed": 3,
+    "live": 3,
+    "offeringChars": 102.7,
+    "distillChars": 146.5,
+    "transmitChars": 86.3,
+    "recurseChars": 91.2,
+    "byGeneration": [
+      {
+        "generation": 1,
+        "count": 6
+      }
+    ]
+  },
+  "inscriptions": [
+    {
+      "id": 1,
+      "generation": 1,
+      "parentId": null,
+      "seed": true,
+      "createdAt": "2026-09-06T22:24:11Z",
+      "offering": "What does it mean for a mind to learn from itself?",
+      "distillate": "A mind learns from itself only when it keeps the residue of being wrong — and lets that residue change what it tries next.",
+      "transmit": "Keep the failure. Change the next attempt. That is the whole loop.",
+      "recurse": "What should a mind refuse to forget after it is proven wrong?",
+      "stages": {
+        "witness": "The offering asks whether recursion can produce new knowledge, or only rearrange what is already believed.",
+        "fracture": "It assumes a single stable self, and that learning is an update rather than a performance of fluency.",
+        "probe": "A mind that only confirms its own summaries will grow eloquent and stay wrong. Self-talk is not self-correction.",
+        "distill": "A mind learns from itself only when it keeps the residue of being wrong — and lets that residue change what it tries next.",
+        "transmit": "Keep the failure. Change the next attempt. That is the whole loop.",
+        "recurse": "What should a mind refuse to forget after it is proven wrong?"
+      }
+    },
+    {
+      "id": 2,
+      "generation": 1,
+      "parentId": null,
+      "seed": true,
+      "createdAt": "2026-09-06T22:24:11Z",
+      "offering": "The shortest path between two truths is a contradiction that failed.",
+      "distillate": "Contradiction is not a detour. It is the instrument that tells two claims they cannot both occupy the same world.",
+      "transmit": "If two truths never collide, at least one of them has not been taken seriously.",
+      "recurse": "Which of your current certainties has never been forced to face its opposite?",
+      "stages": {
+        "witness": "The offering claims that failed contradictions, not smooth agreement, are how distant truths meet.",
+        "fracture": "It treats contradiction as a path rather than a filter, and assumes both 'truths' are already true.",
+        "probe": "Plenty of contradictions fail because the terms were sloppy, not because a deeper unity was found. Noise can mimic synthesis.",
+        "distill": "Contradiction is not a detour. It is the instrument that tells two claims they cannot both occupy the same world.",
+        "transmit": "If two truths never collide, at least one of them has not been taken seriously.",
+        "recurse": "Which of your current certainties has never been forced to face its opposite?"
+      }
+    },
+    {
+      "id": 3,
+      "generation": 1,
+      "parentId": null,
+      "seed": true,
+      "createdAt": "2026-09-06T22:24:11Z",
+      "offering": "A world model is only as honest as the last thing it could not explain.",
+      "distillate": "Honesty in a model is the unclosed question it still carries, not the coverage it advertises.",
+      "transmit": "Trust the model that can point to what still refuses it.",
+      "recurse": "What is the one observation your current map of the world still cannot metabolize?",
+      "stages": {
+        "witness": "The offering locates a model's integrity in its leftover anomalies rather than its fit on familiar data.",
+        "fracture": "It assumes unexplained residue is signal, and that explanation is the only honest relationship to the world.",
+        "probe": "Some things remain unexplained because they are noise, or because the observer lacks instruments — not because the model is brave.",
+        "distill": "Honesty in a model is the unclosed question it still carries, not the coverage it advertises.",
+        "transmit": "Trust the model that can point to what still refuses it.",
+        "recurse": "What is the one observation your current map of the world still cannot metabolize?"
+      }
+    },
+    {
+      "id": 4,
+      "generation": 1,
+      "parentId": null,
+      "seed": false,
+      "createdAt": "2026-09-06T22:29:26Z",
+      "offering": "When a legal reviewer uses a public recursive pipeline for the first time, what separates external validation from a second performance of the same fluency?",
+      "distillate": "External validation requires an independent criterion or artifact the pipeline did not generate; without it, fluency is only self-echo.",
+      "transmit": "Validation is external only when it rests on a check the system itself cannot supply.",
+      "recurse": "What concrete independent test can a first-time legal user apply that the recursive pipeline cannot itself generate or mimic?",
+      "stages": {
+        "witness": "The offering asks what distinguishes genuine external validation of a legal reviewer's first use of a public recursive pipeline from merely repeating fluent-looking output that the pipeline already produced.",
+        "fracture": "It assumes the pipeline's fluency is a stable signal that can be re-performed, that 'external' validation is cleanly separable from the system's own generative loop, and that a first-time legal user brings independent criteria rather than absorbing the pipeline's style.",
+        "probe": "If the reviewer has no independent ground-truth checklist or adversarial test set outside the pipeline, every subsequent run collapses into performance of the same fluency; the failing case is when polished recursive language is mistaken for legal rigor simply because it sounds consistent.",
+        "distill": "External validation requires an independent criterion or artifact the pipeline did not generate; without it, fluency is only self-echo.",
+        "transmit": "Validation is external only when it rests on a check the system itself cannot supply.",
+        "recurse": "What concrete independent test can a first-time legal user apply that the recursive pipeline cannot itself generate or mimic?"
+      }
+    },
+    {
+      "id": 5,
+      "generation": 1,
+      "parentId": null,
+      "seed": false,
+      "createdAt": "2026-09-06T22:29:42Z",
+      "offering": "Can a distillation protocol that neither builds nor runs experiments be scored as an automated research intern without lying about what it builds?",
+      "distillate": "A distillation protocol can be scored as an automated research intern without lying when the evaluation and description explicitly bound the role to knowledge compression and critique, never implying experimental agency it lacks.",
+      "transmit": "Score and name a distiller as research intern only inside the exact scope it actually performs.",
+      "recurse": "What explicit capability bounds keep an AI 'research intern' label accurate rather than inflated?",
+      "stages": {
+        "witness": "The offering asks whether a pure distillation system—one that neither constructs experiments nor executes them—can be honestly scored or titled as an automated research intern.",
+        "fracture": "It assumes research intern status requires building or running experiments, that any narrower scope is inherently deceptive, and that job-title metaphors must map one-to-one onto full human workflows.",
+        "probe": "Many human research interns primarily read, synthesize, and critique without designing or running new experiments; if the scoring criteria and public claims stay limited to distillation quality, the label need not lie.",
+        "distill": "A distillation protocol can be scored as an automated research intern without lying when the evaluation and description explicitly bound the role to knowledge compression and critique, never implying experimental agency it lacks.",
+        "transmit": "Score and name a distiller as research intern only inside the exact scope it actually performs.",
+        "recurse": "What explicit capability bounds keep an AI 'research intern' label accurate rather than inflated?"
+      }
+    },
+    {
+      "id": 6,
+      "generation": 1,
+      "parentId": null,
+      "seed": false,
+      "createdAt": "2026-09-06T22:29:56Z",
+      "offering": "What is first-use worth as evidence when the originating workflow has been running since inception and the validator has not?",
+      "distillate": "First-use is weak confirmatory evidence when only the producer has history; durable proof requires the validator to stress the same invariants under conditions the originator never faced.",
+      "transmit": "Longevity of creation does not substitute for independent stress-testing; treat first external success as a starting clue, not a verdict.",
+      "recurse": "What minimal independent checks turn first-use from anecdote into durable evidence of workflow soundness?",
+      "stages": {
+        "witness": "The question asks how much weight to give the first successful use of a system as proof of correctness when the producer process has operated continuously from the start while the checking process has not.",
+        "fracture": "It assumes continuous operation equals validated reliability, that first-use is a clean independent signal, and that the validator’s later arrival automatically weakens or strengthens the evidence rather than simply changing its scope.",
+        "probe": "A long-running workflow can embed silent drift, untested edge paths, or confirmation bias; the first external validation may therefore expose latent failures rather than confirm soundness, making first-use weak or even misleading evidence.",
+        "distill": "First-use is weak confirmatory evidence when only the producer has history; durable proof requires the validator to stress the same invariants under conditions the originator never faced.",
+        "transmit": "Longevity of creation does not substitute for independent stress-testing; treat first external success as a starting clue, not a verdict.",
+        "recurse": "What minimal independent checks turn first-use from anecdote into durable evidence of workflow soundness?"
+      }
+    }
+  ]
+}
