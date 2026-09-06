@@ -14,6 +14,12 @@ Scored against OpenAI’s automated research intern (September 2026) and researc
 
 First-use cycles on the live floor are external checks from legal/ethics, not a longitudinal replication, and not “Astra validated it.” Intern bar remains fail.
 
+HazyEyes, Inc. is a separately incorporated commercial company. It is not NeuroAgent AI, Inc. This repository is not HazyEyes work. Not a medical product.
+
+A weekly engineering-and-ops calendar from that company was used only as an instrument check of intern scoring. Distill-then-Transmit was not used to operate the company. No live sends.
+
+That calendar includes software construction and scheduled jobs. Those are not OpenAI’s intern, which is few-day directed ML research and development (code, train, evaluate) under supervision. Recasting intern as apps-and-jobs is rejected. Intern remains fail. Distill-then-Transmit Build and Run remain zero.
+
 ## Contents
 
 | Path | What |

@@ -114,6 +114,16 @@ OpenAI published operational intern telemetry. DT does not have a research org, 
   Distillate. First-use is weak confirmatory evidence when only the producer has history; durable proof requires the validator to stress the same invariants under conditions the originator never faced.
   Transmit. Longevity of creation does not substitute for independent stress-testing; treat first external success as a starting clue, not a verdict.
 
+## V.A Instrument check (separate commercial calendar; not this corpus)
+
+HazyEyes, Inc. is a separately incorporated commercial company. It is not NeuroAgent AI, Inc. It is not this repository. Not a medical product.
+
+A private store, not this repository’s world-memory table, scored that company’s weekly engineering-and-ops calendar against the same OpenAI intern ladder. Distill-then-Transmit was the scoring instrument, not the company’s operating system. No live sends. Astra was not passed this store. Do not merge these identifiers with Table II or `corpus.json`.
+
+The calendar constructs software and runs scheduled jobs. Epoch-style Build and Run are therefore non-zero for that object and remain zero for Distill-then-Transmit. OpenAI intern is few-day directed ML research and development (code, train, evaluate) under supervision. The calendar is not that. A cycle that tried to score intern by shrinking Build/Run to apps and jobs was rejected. Intern remains fail. Recursive self-improvement was not shown: no closed causal chain from a prior inscription to a later ship or kill was located.
+
+This check does not move Distill-then-Transmit off fail, does not enlarge n, and must not be cited as intern-complete or as “validated.”
+
 ## VI. Recurse
 
 What would intern-level DT actually be: a system that, given a public offering, can spend days building, running, and analyzing a well-defined check on that offering — under human direction — and inscribe only what survives. That system is not this one.
