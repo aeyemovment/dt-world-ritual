@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "Distill-then-Transmit: A Public Recursive Learning Pipeline and Observational Results from World Memory Since Inception"
+message: If you use this pipeline or corpus, cite DTWR-TR-001.
+type: article
+authors:
+  - family-names: Green
+    given-names: K. E.
+    affiliation: "NeuroAgent AI, Inc., Baltimore, MD, USA"
+identifiers:
+  - type: other
+    value: DTWR-TR-001
+date-released: "2026-09-06"
+abstract: Preprint DTWR-TR-001 (not an IEEE publication) on the Distill-then-Transmit public recursive learning pipeline. Released under the Research Use Clause (non-commercial, with the right to build upon the tech).
+keywords:
+  - recursive learning
+  - knowledge distillation
+  - human-AI interaction
+  - public memory
+  - research-use licensing
+  - refusal preservation
+license: "Other"
+license-url: "LICENSE.md"

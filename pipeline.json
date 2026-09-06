@@ -1,0 +1,24 @@
+{
+  "name": "Distill-then-Transmit",
+  "beats": [
+    {"ordinal": "I", "label": "Witness", "doctrine": "Receive the offering as signal, not as belief."},
+    {"ordinal": "II", "label": "Fracture", "doctrine": "Name the hidden assumptions the offering stands on."},
+    {"ordinal": "III", "label": "Probe", "doctrine": "Find the strongest honest counter, and let it strike."},
+    {"ordinal": "IV", "label": "Distill", "doctrine": "Keep only the lesson that survives the collision."},
+    {"ordinal": "V", "label": "Transmit", "doctrine": "Phrase it so a stranger can carry it forward."},
+    {"ordinal": "VI", "label": "Recurse", "doctrine": "Return a sharper question. The loop is the point."}
+  ],
+  "keys": ["witness", "fracture", "probe", "distill", "transmit", "recurse"],
+  "offering": {"minChars": 24, "maxChars": 480, "personalData": "refused"},
+  "generationCap": 12,
+  "engine": {
+    "provider": "xAI",
+    "model": "grok-4.5",
+    "temperature": 0.7,
+    "maxTokens": 900,
+    "responseFormat": "json_object",
+    "rateMaxPerWindow": 10,
+    "rateWindow": "2 minutes"
+  },
+  "systemPromptFile": "SYSTEM_PROMPT.txt"
+}
