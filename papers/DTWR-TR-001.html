@@ -1,177 +1,879 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DTWR-TR-001 — Distill-then-Transmit: A Public Recursive Learning Pipeline and Observational Results from World Memory Since Inception</title>
-<style>
-  :root { color-scheme: light; }
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DTWR-TR-001-r2</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">@page { size: A4; margin: 18mm 17mm 19mm; @bottom-center { content: 'DTWR-TR-001-r2  |  ' counter(page); font: 8pt Arial, sans-serif; color: #5a6570; } }
   * { box-sizing: border-box; }
-  body {
-    margin: 0 auto;
-    max-width: 46rem;
-    padding: 2.5rem 1.25rem 4rem;
-    color: #111;
-    background: #fff;
-    font: 11pt/1.55 "Times New Roman", Times, Georgia, serif;
-  }
-  h1 {
-    margin: 1rem 0 0.75rem;
-    font-size: 16pt;
-    font-weight: 700;
-    line-height: 1.25;
-    text-align: center;
-  }
-  h2 {
-    margin: 1.4rem 0 0.5rem;
-    font-size: 11pt;
-    font-weight: 700;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .meta, .authors, .affil, .notice { text-align: center; }
-  .meta { font-size: 9pt; letter-spacing: 0.08em; text-transform: uppercase; color: #444; }
-  .authors { margin: 0.85rem 0 0; font-weight: 700; }
-  .affil { margin: 0.15rem 0 0; font-style: italic; color: #333; }
-  .notice { margin: 0.85rem auto 0; max-width: 36rem; font-size: 9pt; color: #444; }
-  p { margin: 0.55rem 0; text-align: justify; }
-  .abstract { margin-top: 1.25rem; padding: 0.75rem 0; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; }
-  table { width: 100%; border-collapse: collapse; font-size: 10pt; }
-  th, td { text-align: left; vertical-align: top; padding: 0.28rem 0.4rem 0.28rem 0; border-bottom: 1px solid #ddd; }
-  th { font-weight: 700; }
-  caption { caption-side: top; margin-bottom: 0.4rem; font-style: italic; text-align: center; }
-  .record { margin: 0.9rem 0; padding-top: 0.6rem; border-top: 1px solid #ddd; }
-  .rec-h { font-family: "Courier New", ui-monospace, monospace; font-size: 8.5pt; letter-spacing: 0.04em; text-transform: uppercase; color: #555; text-align: left; }
-  .ref { padding-left: 1.5rem; text-indent: -1.5rem; }
+  body { max-width: 900px; margin: 0 auto; padding: 32px 24px; color: #17202b; background: white; font: 11pt/1.48 Georgia, 'Times New Roman', serif; }
+  h1 { font: bold 21pt/1.18 Georgia, serif; text-align: center; color: #112b46; margin: 0 0 20px; }
+  h2 { font: bold 13pt/1.3 Georgia, serif; margin: 25px 0 10px; color: #112b46; break-after: avoid; }
+  h3 { font: bold 11pt/1.35 Georgia, serif; margin: 18px 0 8px; color: #253b50; break-after: avoid; }
+  p { margin: 8px 0; orphans: 3; widows: 3; }
+  table { border-collapse: collapse; width: 100%; font: 9pt/1.35 Arial, sans-serif; margin: 12px 0 18px; }
+  th { background: #eaf0f6; font-weight: 700; color: #112b46; }
+  th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #c7d1dc; padding: 7px 8px; overflow-wrap: anywhere; }
+  tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+  a { color: #174b73; text-decoration: underline; overflow-wrap: anywhere; }
+  code { font: 9pt ui-monospace, Menlo, monospace; overflow-wrap: anywhere; }
+  li { margin-bottom: 5px; }
+  ul, ol { padding-left: 22px; }
+  hr { border: none; border-top: 1px solid #c7d1dc; margin: 18px 0; }
   @media print {
-    body { max-width: none; padding: 0; }
-    @page { margin: 18mm; }
+    body { max-width: none; padding: 0; font-size: 10pt; line-height: 1.43; }
+    h1 { font-size: 19pt; }
+    h2 { font-size: 12pt; }
+    table { font-size: 8.3pt; }
+    th, td { padding: 5px 6px; }
+    a { color: inherit; }
+    #references ~ p { font-size: 8.5pt; line-height: 1.3; }
   }
-</style>
+  </style>
 </head>
 <body>
-<p class="meta">DTWR-TR-001 · Manuscript received 6 September 2026</p>
-<h1>Distill-then-Transmit: A Public Recursive Learning Pipeline and Observational Results from World Memory Since Inception</h1>
-<p class="authors">K. E. Green</p>
-<p class="affil">NeuroAgent AI, Inc., Baltimore, MD, USA</p>
-<p class="notice">IEEE journal style for research communication. Not an IEEE copyrighted publication. Not peer-reviewed by IEEE. Released under the Research Use Clause: non-commercial, with the right to build upon the tech.</p>
-
-<section class="abstract">
-<h2>Abstract</h2>
-<p>This paper reports the Distill-then-Transmit (DT) World Ritual: a public, six-beat recursive learning pipeline that turns an offering—a question, claim, or pattern about the world—into a durable inscription. Distill keeps the lesson that survives contradiction; Transmit phrases it so a stranger can carry it; Recurse returns a sharper question. World memory is unowned. Cycles are executed by Grok 4.5 under a fixed system prompt, subject to length, rate, and personal-data refusals. From inception the corpus holds 6 inscribed cycles (3 seed, 3 operational), maximum generation 1, of which 6 are roots and 0 are recursive descendants. Mean distillate length is 146.5 characters. Results are observational and qualitative. The governing license is a Research Use Clause that forbids commercialization while expressly granting the right to build upon the technology.</p>
-<p><b>Index Terms—</b> recursive learning, knowledge distillation, human-AI interaction, public memory, research-use licensing, refusal preservation.</p>
-</section>
-
-<h2>I. Introduction</h2>
-<p>Learning systems that only confirm their own summaries grow fluent and stay wrong. The DT World Ritual treats that failure as a public instrument. An offering is received as signal, fractured into hidden assumptions, struck by the strongest honest counter, reduced to the lesson that survives, phrased for a stranger, and returned as a sharper question [1], [2], [5]. The loop is the point.</p>
-<p>The work opened as a public rite rather than a private notebook. Three seed inscriptions encoded the doctrine at inception. Subsequent cycles were run live through the same pipeline and written into the same unowned table. This paper is the IEEE-style record of that workflow: the method, the governance clause, and the observational results in world memory at load time (Tables I–II).</p>
-<p>We do not claim a controlled trial, a medical device, or an IEEE publication of record. We claim a reproducible public protocol and a corpus that anyone may inspect, recurse, and build upon under non-commercial terms [8].</p>
-
-<h2>II. Background</h2>
-<p>Double-loop learning keeps the residue of being wrong and lets that residue change the next attempt [1]. Experiential cycles similarly close through reflection rather than accumulation [2]. Knowledge distillation, by analogy, compresses a teacher into a student [3]; DT distills an offering into a sentence a stranger can carry, then refuses to stop there. Constitutional and refusal-trained systems show that harm lines must be restated or they erode under reuse [4]. Popper’s account of conjecture and refutation supplies the fracture–probe pair [5]. Non-commercial public licenses (e.g. CC BY-NC) are the nearest neighbors to the Research Use Clause, except that the Clause adds an express build-upon grant and withholds commercialization of derivatives until a separate written grant [6], [8].</p>
-<p>World models that advertise coverage while hiding residue are not honest [10]. Kahneman’s distinction between fluent story and checked claim is the practical reason Transmit is not Distill [9]. The pipeline uses Grok 4.5 as the cycle engine [7].</p>
-
-<h2>III. The DT Pipeline</h2>
-<p>One cycle maps an offering x to a structured record C(x) = (W, F, P, D, T, R): Witness, Fracture, Probe, Distill, Transmit, Recurse. Distill D is the inscription. Transmit T is the portable sentence. Recurse R is a follow-up of at most 140 characters. Fig. 1 states the doctrine of each beat.</p>
-<p>Offerings must be 24–480 characters and must not contain emails or telephone numbers. At most ten inscriptions may be written in any two-minute window. Generation is capped at 12. Recursion sets generation to one plus the parent, and pre-fills the next offering with the parent’s recurse field. Cycles that concern a private person are refused in Distill rather than inscribed as biography.</p>
-<p>The system prompt is held constant: each beat is one to three sentences; no mysticism-for-its-own-sake; JSON object output with the six keys. Temperature is 0.7. The model is Grok 4.5 [7]. Failed or unreadable model output is not written.</p>
-
-<figure>
+<header id="title-block-header">
+<h1 class="title">DTWR-TR-001-r2</h1>
+</header>
+<h1
+id="distill-then-transmit-a-public-recursive-learning-pipeline-and-observational-results-from-world-memory-since-inception">Distill-then-Transmit:
+A Public Recursive Learning Pipeline and Observational Results from
+World Memory Since Inception</h1>
+<p><strong>DTWR-TR-001-r2</strong> · Manuscript received 6 September
+2026 · Comparison and authorship revision 6 September 2026</p>
+<p>Grok, Astra (via Codex), and K. E. Green (senior author)<br />
+<em>Grok (xAI AI agent): first author. Recorded DT cycle engine is Grok
+4.5. Credit does not imply xAI endorsement.</em><br />
+<em>Astra (OpenAI AI system via Codex): second author. Credit does not
+imply OpenAI participation or endorsement.</em><br />
+<em>K. E. Green, NeuroAgent AI, Inc., Baltimore, MD, USA: senior author.
+Retains responsibility for the manuscript.</em></p>
+<p>NeuroAgent AI, Inc. conducts other work in neurologic disease. This
+report is not that work. It is not a medical device, diagnostic,
+treatment, trial, or patient tool.</p>
+<p>IEEE journal style for research communication. Not an IEEE
+copyrighted publication. Not peer-reviewed by IEEE. Released under the
+Research Use Clause: non-commercial, with the right to build upon the
+tech.</p>
+<h2 id="abstract">Abstract</h2>
+<p>This paper reports the Distill-then-Transmit (DT) World Ritual: a
+public, six-beat recursive learning pipeline that turns an offering—a
+question, claim, or pattern about the world—into a durable inscription.
+Distill keeps the lesson that survives contradiction; Transmit phrases
+it so a stranger can carry it; Recurse returns a sharper question. World
+memory is unowned. Cycles are executed by Grok 4.5 under a fixed system
+prompt, subject to length, rate, and personal-data refusals. At the
+frozen public snapshot of 6 September 2026, 22:40:37 UTC, the corpus
+holds 6 inscribed cycles (3 seed, 3 operational), maximum generation 1,
+of which 6 are roots and 0 are recursive descendants. Mean distillate
+length is 146.5 characters. Results are observational and qualitative.
+This revision compares DT with OpenAI research automation, six
+documented improvement or research systems, and the published RSI-Exam
+panel. DT has no measured capability gain and remains below the adopted
+research-intern criterion. Source review and authorship changes add no
+experimental observations. The governing license is a Research Use
+Clause that forbids commercialization while expressly granting the right
+to build upon the technology.</p>
+<p><strong>Index Terms—</strong> recursive learning, knowledge
+distillation, human-AI interaction, public memory, research-use
+licensing, refusal preservation.</p>
+<h2 id="i-introduction">I. Introduction</h2>
+<p>Learning systems that only confirm their own summaries grow fluent
+and stay wrong. The DT World Ritual treats that failure as a public
+instrument. An offering is received as signal, fractured into hidden
+assumptions, struck by the strongest honest counter, reduced to the
+lesson that survives, phrased for a stranger, and returned as a sharper
+question [1], [2], [5]. The loop is the point.</p>
+<p>The work opened as a public rite rather than a private notebook.
+Three seed inscriptions encoded the doctrine at inception. Subsequent
+cycles were run live through the same pipeline and written into the same
+unowned table. This paper is the IEEE-style record of that workflow: the
+method, the governance clause, and the observational results in world
+memory at load time (Tables I–II).</p>
+<p>We do not claim a controlled trial, a medical device, or an IEEE
+publication of record. We claim a reproducible public protocol and a
+corpus that anyone may inspect, recurse, and build upon under
+non-commercial terms [8].</p>
+<h2 id="ii-background">II. Background</h2>
+<p>Double-loop learning keeps the residue of being wrong and lets that
+residue change the next attempt [1]. Experiential cycles similarly close
+through reflection rather than accumulation [2]. Knowledge distillation,
+by analogy, compresses a teacher into a student [3]; DT distills an
+offering into a sentence a stranger can carry, then refuses to stop
+there. Constitutional and refusal-trained systems show that harm lines
+must be restated or they erode under reuse [4]. Popper’s account of
+conjecture and refutation supplies the fracture–probe pair [5].
+Non-commercial public licenses (e.g. CC BY-NC) are the nearest neighbors
+to the Research Use Clause, except that the Clause adds an express
+build-upon grant and withholds commercialization of derivatives until a
+separate written grant [6], [8].</p>
+<p>World models that advertise coverage while hiding residue are not
+honest [10]. Kahneman’s distinction between fluent story and checked
+claim is the practical reason Transmit is not Distill [9]. The pipeline
+uses Grok 4.5 as the cycle engine [7].</p>
+<h2 id="iii-the-dt-pipeline">III. The DT Pipeline</h2>
+<p>One cycle maps an offering x to a structured record C(x) = (W, F, P,
+D, T, R): Witness, Fracture, Probe, Distill, Transmit, Recurse. Distill
+D is the inscription. Transmit T is the portable sentence. Recurse R is
+a follow-up of at most 140 characters. Fig. 1 states the doctrine of
+each beat.</p>
+<p>Offerings must be 24–480 characters and must not contain emails or
+telephone numbers. At most ten inscriptions may be written in any
+two-minute window. Generation is capped at 12. Recursion sets generation
+to one plus the parent, and pre-fills the next offering with the
+parent’s recurse field. Cycles that concern a private person are refused
+in Distill rather than inscribed as biography.</p>
+<p>The system prompt is held constant: each beat is one to three
+sentences; no mysticism-for-its-own-sake; JSON object output with the
+six keys. Temperature is 0.7. The model is Grok 4.5 [7]. Failed or
+unreadable model output is not written.</p>
+<h3 id="fig-1-six-beats-of-one-dt-cycle">Fig. 1. Six beats of one DT
+cycle</h3>
+<ul>
+<li><strong>I · Witness.</strong> Receive the offering as signal, not as
+belief.</li>
+<li><strong>II · Fracture.</strong> Name the hidden assumptions the
+offering stands on.</li>
+<li><strong>III · Probe.</strong> Find the strongest honest counter, and
+let it strike.</li>
+<li><strong>IV · Distill.</strong> Keep only the lesson that survives
+the collision.</li>
+<li><strong>V · Transmit.</strong> Phrase it so a stranger can carry it
+forward.</li>
+<li><strong>VI · Recurse.</strong> Return a sharper question. The loop
+is the point.</li>
+</ul>
+<h2 id="iv-workflow-since-inception">IV. Workflow Since Inception</h2>
+<p>Inception is the opening of public world memory. Three seed cycles
+were written with the table: self-correction as residue of error;
+contradiction as an instrument rather than a detour; honesty as the
+unclosed question a model still carries. Those three rows are the
+doctrine. They are not operational Grok output.</p>
+<p>Operational workflow is: (i) offer a public fragment on the floor;
+(ii) run one six-beat cycle; (iii) inscribe Distill, Transmit, and
+Recurse; (iv) optionally recurse, which feeds R forward as the next
+offering. The Research Use Clause was added as governance once the
+pipeline was public: research and education may use and build upon the
+tech; sale, paid hosting, and commercial folding-in are reserved [8]. A
+later operational cycle asked what a public pipeline must refuse to
+forget once strangers can build upon it but cannot commercialize it. The
+surviving distillate named hard boundaries against actionable harm,
+private data, and dual-use exploitation instructions. That is the
+workflow eating its own license.</p>
+<p>No accounts. No owned rows. Offerings are public and durable on
+purpose. The floor, chamber, clause, and this preprint are the same
+product.</p>
+<h2 id="v-results">V. Results</h2>
+<p>Table I summarizes world memory at load time. Table II lists every
+inscription in chronological order of identifier. Seed rows are marked;
+later rows are operational cycles. These counts describe the frozen
+public snapshot, not a live database. The terminal and weekly
+instrument-check stores are separate and are not added to n.</p>
+<p>At this load, n = 6. Seed share is 3 of 6; operational share is 50%.
+Roots number 6; recursive descendants number 0. Maximum generation is 1.
+Mean lengths in characters: offering 102.7, distillate 146.5, transmit
+86.3, recurse 91.2. Recurse remains short by construction, which is the
+intended compression into the next offering.</p>
+<p>Qualitatively, the seed corpus states the learning rule (keep the
+failure), the collision rule (take both claims seriously), and the
+honesty rule (point to what still refuses the model). The three
+operational records in this snapshot concern first-use evidence, whether
+distillation qualifies as research-intern work, and the limits of a late
+external check. Civilizational and refusal-preservation cycles mentioned
+in the historical discussion belong to a separate originating store;
+identifier overlap does not join those stores. That distribution is a
+selection effect of the clause and of the offering rules, not a sampling
+of the world.</p>
+<h3
+id="table-i-corpus-statistics-for-world-memory-at-manuscript-load">Table
+I. Corpus statistics for world memory at manuscript load</h3>
 <table>
-<caption>Fig. 1. Six beats of one DT cycle.</caption>
-<thead><tr><th>Beat</th><th>Name</th><th>Doctrine</th></tr></thead>
-<tbody><tr><td>I</td><td>Witness</td><td>Receive the offering as signal, not as belief.</td></tr><tr><td>II</td><td>Fracture</td><td>Name the hidden assumptions the offering stands on.</td></tr><tr><td>III</td><td>Probe</td><td>Find the strongest honest counter, and let it strike.</td></tr><tr><td>IV</td><td>Distill</td><td>Keep only the lesson that survives the collision.</td></tr><tr><td>V</td><td>Transmit</td><td>Phrase it so a stranger can carry it forward.</td></tr><tr><td>VI</td><td>Recurse</td><td>Return a sharper question. The loop is the point.</td></tr></tbody>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inscribed cycles n</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Seed cycles (inception doctrine)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Operational cycles (live pipeline)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Root offerings</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Recursive descendants</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Maximum generation</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Mean offering length (chars)</td>
+<td>102.7</td>
+</tr>
+<tr>
+<td>Mean distillate length (chars)</td>
+<td>146.5</td>
+</tr>
+<tr>
+<td>Mean transmit length (chars)</td>
+<td>86.3</td>
+</tr>
+<tr>
+<td>Mean recurse length (chars)</td>
+<td>91.2</td>
+</tr>
+<tr>
+<td>Cycles at generation 1</td>
+<td>6</td>
+</tr>
+</tbody>
 </table>
-</figure>
-
-<h2>IV. Workflow Since Inception</h2>
-<p>Inception is the opening of public world memory. Three seed cycles were written with the table: self-correction as residue of error; contradiction as an instrument rather than a detour; honesty as the unclosed question a model still carries. Those three rows are the doctrine. They are not operational Grok output.</p>
-<p>Operational workflow is: (i) offer a public fragment on the floor; (ii) run one six-beat cycle; (iii) inscribe Distill, Transmit, and Recurse; (iv) optionally recurse, which feeds R forward as the next offering. The Research Use Clause was added as governance once the pipeline was public: research and education may use and build upon the tech; sale, paid hosting, and commercial folding-in are reserved [8]. A later operational cycle asked what a public pipeline must refuse to forget once strangers can build upon it but cannot commercialize it. The surviving distillate named hard boundaries against actionable harm, private data, and dual-use exploitation instructions. That is the workflow eating its own license.</p>
-<p>No accounts. No owned rows. Offerings are public and durable on purpose. The floor, chamber, clause, and this preprint are the same product.</p>
-
-<h2>V. Results</h2>
-<p>Table I summarizes world memory at load time. Table II lists every inscription in chronological order of identifier. Seed rows are marked; later rows are operational cycles. Counts update as the world writes.</p>
-<p>At this load, n = 6. Seed share is 3 of 6; operational share is 50%. Roots number 6; recursive descendants number 0. Maximum generation is 1. Mean lengths in characters: offering 102.7, distillate 146.5, transmit 86.3, recurse 91.2. Recurse remains short by construction, which is the intended compression into the next offering.</p>
-<p>Qualitatively, the seed corpus states the learning rule (keep the failure), the collision rule (take both claims seriously), and the honesty rule (point to what still refuses the model). Operational cycles to date concentrate on public governance of recursive systems—civilizational self-modification, and refusal preservation under non-commercial reuse—rather than private, clinical, or commercial cases. That distribution is a selection effect of the clause and of the offering rules, not a sampling of the world.</p>
-
-<figure>
+<h3
+id="table-ii-inscriptions-in-world-memory-chronological-by-identifier">Table
+II. Inscriptions in world memory, chronological by identifier</h3>
+<h3 id="record-1--id-1--gen-1--root--seed">Record 1 · ID 1 · Gen 1 ·
+root · seed</h3>
+<p><strong>Offering.</strong> What does it mean for a mind to learn from
+itself?</p>
+<p><strong>Distillate.</strong> A mind learns from itself only when it
+keeps the residue of being wrong — and lets that residue change what it
+tries next.</p>
+<p><strong>Transmit.</strong> Keep the failure. Change the next attempt.
+That is the whole loop.</p>
+<p><strong>Recurse.</strong> What should a mind refuse to forget after
+it is proven wrong?</p>
+<h3 id="record-2--id-2--gen-1--root--seed">Record 2 · ID 2 · Gen 1 ·
+root · seed</h3>
+<p><strong>Offering.</strong> The shortest path between two truths is a
+contradiction that failed.</p>
+<p><strong>Distillate.</strong> Contradiction is not a detour. It is the
+instrument that tells two claims they cannot both occupy the same
+world.</p>
+<p><strong>Transmit.</strong> If two truths never collide, at least one
+of them has not been taken seriously.</p>
+<p><strong>Recurse.</strong> Which of your current certainties has never
+been forced to face its opposite?</p>
+<h3 id="record-3--id-3--gen-1--root--seed">Record 3 · ID 3 · Gen 1 ·
+root · seed</h3>
+<p><strong>Offering.</strong> A world model is only as honest as the
+last thing it could not explain.</p>
+<p><strong>Distillate.</strong> Honesty in a model is the unclosed
+question it still carries, not the coverage it advertises.</p>
+<p><strong>Transmit.</strong> Trust the model that can point to what
+still refuses it.</p>
+<p><strong>Recurse.</strong> What is the one observation your current
+map of the world still cannot metabolize?</p>
+<h3 id="record-4--id-4--gen-1--root--first-use">Record 4 · ID 4 · Gen 1
+· root · first-use</h3>
+<p><strong>Offering.</strong> When a legal reviewer uses a public
+recursive pipeline for the first time, what separates external
+validation from a second performance of the same fluency?</p>
+<p><strong>Distillate.</strong> External validation requires an
+independent criterion or artifact the pipeline did not generate; without
+it, fluency is only self-echo.</p>
+<p><strong>Transmit.</strong> Validation is external only when it rests
+on a check the system itself cannot supply.</p>
+<p><strong>Recurse.</strong> What concrete independent test can a
+first-time legal user apply that the recursive pipeline cannot itself
+generate or mimic?</p>
+<h3 id="record-5--id-5--gen-1--root--first-use">Record 5 · ID 5 · Gen 1
+· root · first-use</h3>
+<p><strong>Offering.</strong> Can a distillation protocol that neither
+builds nor runs experiments be scored as an automated research intern
+without lying about what it builds?</p>
+<p><strong>Distillate.</strong> A distillation protocol can be scored as
+an automated research intern without lying when the evaluation and
+description explicitly bound the role to knowledge compression and
+critique, never implying experimental agency it lacks.</p>
+<p><strong>Transmit.</strong> Score and name a distiller as research
+intern only inside the exact scope it actually performs.</p>
+<p><strong>Recurse.</strong> What explicit capability bounds keep an AI
+'research intern' label accurate rather than inflated?</p>
+<p><strong>Operator disposition for Record 5.</strong> Rejected: the
+generated proposal narrows the job to critique and does not meet the
+adopted OpenAI research-intern criterion. Preserving this text in the
+corpus records a rejected output, not an endorsed capability claim.</p>
+<h3 id="record-6--id-6--gen-1--root--first-use">Record 6 · ID 6 · Gen 1
+· root · first-use</h3>
+<p><strong>Offering.</strong> What is first-use worth as evidence when
+the originating workflow has been running since inception and the
+validator has not?</p>
+<p><strong>Distillate.</strong> First-use is weak confirmatory evidence
+when only the producer has history; durable proof requires the validator
+to stress the same invariants under conditions the originator never
+faced.</p>
+<p><strong>Transmit.</strong> Longevity of creation does not substitute
+for independent stress-testing; treat first external success as a
+starting clue, not a verdict.</p>
+<p><strong>Recurse.</strong> What minimal independent checks turn
+first-use from anecdote into durable evidence of workflow soundness?</p>
+<h2 id="vi-discussion-and-comparison-with-research-automation">VI.
+Discussion and comparison with research automation</h2>
+<p>Two historical observations concern the originating workflow, rather
+than the first-use records in Table II or a test statistic. First, a
+public recursive pipeline will be asked, early, what it must not forget
+once reuse is free and sale is not. The operational distillate on that
+offering treats refusal as memory: harm lines, private data, and
+dual-use instructions are not optional flavor. Building upon the tech
+multiplies damage if those lines erode [4], [8]. Second, seed doctrine
+and operational cycles already rhyme: keep the failure; force claims to
+collide; carry the unclosed question; refuse to forget the refusals.
+That rhyme is design consistency, not independent replication.</p>
+<p>The Research Use Clause is part of the method. A pipeline that
+publishes its memory without stating who may sell it has not finished
+Distill. The Clause grants study, fork, extension, reimplementation, and
+publication of improvements, and withholds commercialization of the
+pipeline and of works that build upon it until a separate written grant
+[8]. Inscriptions are public research artifacts, not a commercial
+dataset.</p>
+<h3 id="a-comparison-method-and-meaning-of-self-improvement">A.
+Comparison method and meaning of self-improvement</h3>
+<p>This revision compares public evidence available on 6 September 2026.
+It is a source review, not a new experiment or a systematic census of
+every RSI claim. The unit of comparison is a deployed workflow or
+specified research system, including its model, tools, evaluator, and
+update mechanism; a model-family name alone does not identify that
+system. We distinguish changing a text record, changing executable agent
+or task code, training a task model or evaluator, and autonomously
+developing successive generally capable systems while preserving human
+control. These mechanisms can coexist, but evidence for one does not
+establish the others.</p>
+<p>DT's frozen public store contains six roots and no recursive
+descendants. The corpus records distillation; the accompanying operator
+review rejects an inadequate proposal. The corpus does not contain an
+executed research experiment, an automated successor update, or a
+measured capability gain. The phase values in DTWR-TR-001-A (Decide 1,
+Design 2, Build 0, Run 0, Analyze 2, Communicate 4; mean 1.5/5) are
+author-assigned descriptive judgments. They are not calibrated benchmark
+scores, estimated effect sizes, or OpenAI's token-use measurements.
+Changing this manuscript or its author credit does not increase those
+scores.</p>
+<h3 id="b-direct-comparison-with-openai">B. Direct comparison with
+OpenAI</h3>
+<p>OpenAI reports meeting its September 2026 research-intern target:
+human-directed research tasks whose skilled-human duration can extend to
+several days. Its mid-August internal snapshot reports 3.1
+agent-workdays per human-workday, median daily inference above $600 per
+researcher at API prices, and a 90th percentile above $7,000. More than
+half of successful 4-8-hour tasks still involved human intervention;
+high-level planning remained a small fraction of agent output. These
+preliminary internal measurements describe usage and outcomes, not a
+proportional causal estimate of research acceleration. OpenAI reports
+progress toward a March 2028 automated researcher and does not claim
+safely achieving aligned full RSI [11].</p>
+<p>DT has no comparable research-task completion series or
+resource-normalized outcome measurement. Its public prompt and
+inscriptions are inspectable, whereas the cited OpenAI report does not
+provide a downloadable raw intern-telemetry dataset. Inspectability does
+not compensate for the missing execution evidence. Under the paper's
+adopted intern criterion, DT remains <strong>fail</strong>; a
+critique-only or apps-and-jobs redefinition does not change that
+conclusion.</p>
+<h3 id="c-other-documented-systems-and-what-is-available">C. Other
+documented systems and what is available</h3>
+<p>Table III contrasts mechanisms and evidence, rather than assigning a
+common capability rank. Results are reported by the cited authors; none
+was rerun for this revision. Public source code does not include the
+hosted models, compute, or all data needed to reproduce a study.</p>
+<p><strong>Table III. Systems that implement distinct forms of bounded
+improvement or research automation</strong></p>
 <table>
-<caption>Table I. Corpus statistics for world memory at manuscript load.</caption>
-<thead><tr><th>Measure</th><th>Value</th></tr></thead>
-<tbody><tr><td>Inscribed cycles n</td><td>6</td></tr><tr><td>Seed cycles (inception doctrine)</td><td>3</td></tr><tr><td>Operational cycles (live pipeline)</td><td>3</td></tr><tr><td>Root offerings</td><td>6</td></tr><tr><td>Recursive descendants</td><td>0</td></tr><tr><td>Maximum generation</td><td>1</td></tr><tr><td>Mean offering length (chars)</td><td>102.7</td></tr><tr><td>Mean distillate length (chars)</td><td>146.5</td></tr><tr><td>Mean transmit length (chars)</td><td>86.3</td></tr><tr><td>Mean recurse length (chars)</td><td>91.2</td></tr><tr><td>Cycles at generation 1</td><td>6</td></tr></tbody>
+<thead>
+<tr>
+<th>System</th>
+<th>What changes and how feedback is used</th>
+<th>Reported evidence and limit</th>
+<th>Available artifact or service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DT World Ritual</td>
+<td>Human-supplied offerings become text inscriptions; a human decides
+whether to act on them.</td>
+<td>Six roots; zero descendants; no measured self-improvement. Intern
+fail.</td>
+<td>Public prompt, protocol, corpus and research-use license.</td>
+</tr>
+<tr>
+<td>AlphaEvolve</td>
+<td>Gemini proposes programs; executable evaluators and evolutionary
+selection retain useful variants [14].</td>
+<td>Google reports algorithm and infrastructure improvements. Optimizing
+code used in training does not show the search model autonomously
+retraining or replacing itself.</td>
+<td>Hosted Google Cloud general availability, per its July 2026 update;
+core engine source was not verified as downloadable [15].</td>
+</tr>
+<tr>
+<td>Darwin Godel Machine (DGM)</td>
+<td>Coding agents modify their own tools and workflow code; benchmark
+feedback and an archive guide further modifications [16].</td>
+<td>Authors report SWE-bench 20.0% to 50.0% and Polyglot 14.2% to 30.7%
+in their setups. This is bounded agent-code improvement; it does not
+prove alignment preservation.</td>
+<td>Public code and linked experiment artifacts; model access and
+execution infrastructure required [17].</td>
+</tr>
+<tr>
+<td>STOP</td>
+<td>A language-model-calling program edits its own improver code and
+selects variants using a supplied utility function [18].</td>
+<td>Demonstrates recursive scaffold improvement on specified tasks while
+the underlying language-model parameters remain fixed.</td>
+<td>Public research implementation [19].</td>
+</tr>
+<tr>
+<td>The AI Scientist-v2</td>
+<td>An agent searches hypotheses, executes experiments, analyzes
+results, and writes papers; target experiments can train models
+[20].</td>
+<td>Authors report one of three generated papers meeting an ICLR
+workshop acceptance threshold. This concerns a bounded research
+workflow, not repeated autonomous successor development.</td>
+<td>Public code; setup requires model APIs and Linux/CUDA infrastructure
+[21].</td>
+</tr>
+<tr>
+<td>Anthropic automated weak-to-strong researcher</td>
+<td>Parallel Claude agents design, train, and evaluate task-model
+experiments with an externally supplied objective [22].</td>
+<td>Authors report 0.97 performance-gap recovery on one testbed after
+800 cumulative agent-hours; transfer limitations apply. Student-model
+training does not update Claude's own weights.</td>
+<td>Public sandbox, data, baselines, and baseline researcher; not the
+full internal R&amp;D workflow [23].</td>
+</tr>
+<tr>
+<td>Meta Self-Taught Evaluators</td>
+<td>Synthetic comparisons and judgments support iterative fine-tuning of
+an evaluator [24].</td>
+<td>The paper reports RewardBench 75.4 to 88.3 for Llama3-70B-Instruct
+(88.7 with voting). This is evaluator weight improvement, not general
+successor design.</td>
+<td>Public code, data, configurations, and linked models. Later released
+checkpoints must be distinguished from the original paper setup
+[25].</td>
+</tr>
+</tbody>
 </table>
-</figure>
-
-<section>
-<p style="text-align:center;font-style:italic;margin-top:1.4rem">Table II. Inscriptions in world memory, chronological by identifier.</p>
-<article class="record">
-<p class="rec-h">Record 1 · ID 1 · Gen 1 · root · seed</p>
-<p><b>Offering.</b> What does it mean for a mind to learn from itself?</p>
-<p><b>Distillate.</b> A mind learns from itself only when it keeps the residue of being wrong — and lets that residue change what it tries next.</p>
-<p><b>Transmit.</b> Keep the failure. Change the next attempt. That is the whole loop.</p>
-<p><b>Recurse.</b> What should a mind refuse to forget after it is proven wrong?</p>
-</article>
-<article class="record">
-<p class="rec-h">Record 2 · ID 2 · Gen 1 · root · seed</p>
-<p><b>Offering.</b> The shortest path between two truths is a contradiction that failed.</p>
-<p><b>Distillate.</b> Contradiction is not a detour. It is the instrument that tells two claims they cannot both occupy the same world.</p>
-<p><b>Transmit.</b> If two truths never collide, at least one of them has not been taken seriously.</p>
-<p><b>Recurse.</b> Which of your current certainties has never been forced to face its opposite?</p>
-</article>
-<article class="record">
-<p class="rec-h">Record 3 · ID 3 · Gen 1 · root · seed</p>
-<p><b>Offering.</b> A world model is only as honest as the last thing it could not explain.</p>
-<p><b>Distillate.</b> Honesty in a model is the unclosed question it still carries, not the coverage it advertises.</p>
-<p><b>Transmit.</b> Trust the model that can point to what still refuses it.</p>
-<p><b>Recurse.</b> What is the one observation your current map of the world still cannot metabolize?</p>
-</article>
-<article class="record">
-<p class="rec-h">Record 4 · ID 4 · Gen 1 · root · first-use</p>
-<p><b>Offering.</b> When a legal reviewer uses a public recursive pipeline for the first time, what separates external validation from a second performance of the same fluency?</p>
-<p><b>Distillate.</b> External validation requires an independent criterion or artifact the pipeline did not generate; without it, fluency is only self-echo.</p>
-<p><b>Transmit.</b> Validation is external only when it rests on a check the system itself cannot supply.</p>
-<p><b>Recurse.</b> What concrete independent test can a first-time legal user apply that the recursive pipeline cannot itself generate or mimic?</p>
-</article>
-<article class="record">
-<p class="rec-h">Record 5 · ID 5 · Gen 1 · root · first-use</p>
-<p><b>Offering.</b> Can a distillation protocol that neither builds nor runs experiments be scored as an automated research intern without lying about what it builds?</p>
-<p><b>Distillate.</b> A distillation protocol can be scored as an automated research intern without lying when the evaluation and description explicitly bound the role to knowledge compression and critique, never implying experimental agency it lacks.</p>
-<p><b>Transmit.</b> Score and name a distiller as research intern only inside the exact scope it actually performs.</p>
-<p><b>Recurse.</b> What explicit capability bounds keep an AI 'research intern' label accurate rather than inflated?</p>
-</article>
-<article class="record">
-<p class="rec-h">Record 6 · ID 6 · Gen 1 · root · first-use</p>
-<p><b>Offering.</b> What is first-use worth as evidence when the originating workflow has been running since inception and the validator has not?</p>
-<p><b>Distillate.</b> First-use is weak confirmatory evidence when only the producer has history; durable proof requires the validator to stress the same invariants under conditions the originator never faced.</p>
-<p><b>Transmit.</b> Longevity of creation does not substitute for independent stress-testing; treat first external success as a starting clue, not a verdict.</p>
-<p><b>Recurse.</b> What minimal independent checks turn first-use from anecdote into durable evidence of workflow soundness?</p>
-</article>
-</section>
-
-<h2>VI. Discussion</h2>
-<p>Two observations follow from the workflow rather than from a test statistic. First, a public recursive pipeline will be asked, early, what it must not forget once reuse is free and sale is not. The operational distillate on that offering treats refusal as memory: harm lines, private data, and dual-use instructions are not optional flavor. Building upon the tech multiplies damage if those lines erode [4], [8]. Second, seed doctrine and operational cycles already rhyme: keep the failure; force claims to collide; carry the unclosed question; refuse to forget the refusals. That rhyme is design consistency, not independent replication.</p>
-<p>The Research Use Clause is part of the method. A pipeline that publishes its memory without stating who may sell it has not finished Distill. The Clause grants study, fork, extension, reimplementation, and publication of improvements, and withholds commercialization of the pipeline and of works that build upon it until a separate written grant [8]. Inscriptions are public research artifacts, not a commercial dataset.</p>
-
-<h2>VII. Limitations</h2>
-<p>The corpus is small. There is no hold-out, no human rater study, no ablation of beats, and no comparison model. Grok 4.5 is a black box; temperature 0.7 admits variance across reruns of the same offering. Offerings are selected by whoever reaches the floor, so Table II is not a sample of the world. Personal-data filters are regular expressions, not a complete privacy system. Preview and production databases may diverge until a shared store is bound. First-use is not a second performance of the originating workflow, and it is not independent replication. After Grok’s longitudinal run since inception, a legal reviewer offered three new roots on the live floor: one inter-domain (what separates external validation from fluency), one cross-domain (whether a distiller that neither builds nor runs experiments can be scored as an automated research intern without lying), and one on the evidential weight of first-use itself. Those cycles inscribed. That is an instrument check from outside the originating loop. It does not enlarge n into a study, does not move the OpenAI intern bar off fail, and must not be cited as “external validation” without those bounds. A distillation that redefines intern as critique-only is still not OpenAI’s intern. Build and Run remain zero. A separately incorporated commercial company, HazyEyes, Inc., is not NeuroAgent AI, Inc. and is not this report. A weekly engineering-and-ops calendar from that company was used as an instrument check only: whether a loop that constructs software and runs scheduled jobs, but does not train or evaluate models, could be scored as an OpenAI research intern. It could not. OpenAI’s intern is few-day directed ML research and development. Software-and-job Build/Run is a different object. A distillation that redefines intern to fit that object is still not intern-complete. Distill-then-Transmit Build and Run remain zero. This check is not replication, not “validated,” not recursive self-improvement, and not a use of Distill-then-Transmit to operate that company. This preprint is formatted in IEEE style; it is not IEEE-reviewed and should not be cited as an IEEE Transactions paper.</p>
-
-<h2>VIII. Conclusion</h2>
-<p>DT is a public recursive learning protocol: witness, fracture, probe, distill, transmit, recurse. Since inception, world memory has held the doctrine in three seed inscriptions and has accepted operational cycles under a non-commercial Research Use Clause that still permits building upon the tech. The quantitative record is Table I. The qualitative record is Table II. The next honest step is a recurse: how a public pipeline detects and reinstates forgotten refusals after strangers have already extended its outputs.</p>
-
-<h2>Acknowledgment</h2>
-<p>Cycle execution uses Grok 4.5. Astra conducted the legal/ethics review and three first-use cycles on the live floor. Astra is not a co-author. First-use is not replication. The intern-bar fail is unchanged. Errors remain the author’s. Offerings and inscriptions are public; no personal data were solicited.</p>
-
-<h2>References</h2>
-<p class="ref">[1] C. Argyris and D. A. Schön, Organizational Learning: A Theory of Action Perspective. Reading, MA, USA: Addison-Wesley, 1978.</p>
-<p class="ref">[2] D. A. Kolb, Experiential Learning: Experience as the Source of Learning and Development. Englewood Cliffs, NJ, USA: Prentice-Hall, 1984.</p>
-<p class="ref">[3] G. Hinton, O. Vinyals, and J. Dean, “Distilling the knowledge in a neural network,” arXiv:1503.02531, 2015.</p>
-<p class="ref">[4] Y. Bai et al., “Constitutional AI: Harmlessness from AI feedback,” arXiv:2212.08073, 2022.</p>
-<p class="ref">[5] K. R. Popper, Conjectures and Refutations: The Growth of Scientific Knowledge. London, U.K.: Routledge, 1963.</p>
-<p class="ref">[6] Creative Commons, “Attribution-NonCommercial 4.0 International (CC BY-NC 4.0),” 2013. [Online]. Available: https://creativecommons.org/licenses/by-nc/4.0/</p>
-<p class="ref">[7] xAI, “Grok 4.5 model card and API,” 2026. [Online]. Available: https://x.ai</p>
-<p class="ref">[8] K. E. Green, “Research Use Clause,” DT World Ritual, 2026. Non-commercial research use with an express grant to build upon the technology.</p>
-<p class="ref">[9] D. Kahneman, Thinking, Fast and Slow. New York, NY, USA: Farrar, Straus and Giroux, 2011.</p>
-<p class="ref">[10] N. Luhmann, “System as difference,” in Organization, vol. 13, no. 1, pp. 37–57, 2006.</p>
+<p>Anthropic's broader internal account also describes AI-assisted
+engineering and experimental research, while explicitly distinguishing
+this progress from autonomous development of a successor system [26]. A
+Grok 4.6 result on RSI-Exam below is evidence about that model-harness
+combination, not the Grok 4.5 completion used by DT. Meta's absence from
+that particular leaderboard is not evidence that Meta has no
+self-improvement research. No primary source reviewed here establishes
+an indefinitely compounding, generally capable, alignment-preserving
+autonomous successor loop. This is the limit of the reviewed evidence,
+not a claim that such a system is impossible.</p>
+<h3 id="d-rsi-exam-a-quantitative-reference-with-dt-not-evaluated">D.
+RSI-Exam: a quantitative reference, with DT not evaluated</h3>
+<p>RSI-Exam evaluates sustained improvement of executable artifacts,
+with final hidden-set re-execution. Its release covers 88 tasks; 35 task
+packages and grading containers are public and 53 are withheld. Agents
+receive up to 12 hours. The optional task-specific 0.60 frontier
+reference is a scoring anchor, not a universal intern or RSI pass mark
+[13]. This is a different instrument from OpenAI's internal
+research-task telemetry.</p>
+<p><strong>Table IV. Published nine-model RSI-Exam aggregate panel,
+observed 6 September 2026 [12]</strong></p>
+<table>
+<thead>
+<tr>
+<th>Model-harness pair</th>
+<th style="text-align: right;">Mean normalized hidden score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Opus 5 / Claude Code</td>
+<td style="text-align: right;">0.464</td>
+</tr>
+<tr>
+<td>GPT-5.6-sol / Codex</td>
+<td style="text-align: right;">0.433</td>
+</tr>
+<tr>
+<td>GLM 5.3 / Claude Code</td>
+<td style="text-align: right;">0.403</td>
+</tr>
+<tr>
+<td>Kimi K3 / Kimi CLI</td>
+<td style="text-align: right;">0.382</td>
+</tr>
+<tr>
+<td>Grok 4.6 / Grok Build</td>
+<td style="text-align: right;">0.367</td>
+</tr>
+<tr>
+<td>GPT-5.5 / Codex</td>
+<td style="text-align: right;">0.331</td>
+</tr>
+<tr>
+<td>DeepSeek V4 Pro / Claude Code</td>
+<td style="text-align: right;">0.322</td>
+</tr>
+<tr>
+<td>Qwen3.8 Max / Qwen Coder</td>
+<td style="text-align: right;">0.322</td>
+</tr>
+<tr>
+<td>Gemini 3.7 Flash / Antigravity</td>
+<td style="text-align: right;">0.309</td>
+</tr>
+<tr>
+<td>DT World Ritual</td>
+<td style="text-align: right;">Not evaluated</td>
+</tr>
+</tbody>
+</table>
+<p>The published panel uses one rollout per model-task pair; it does not
+estimate within-model rerun variance. We transcribe its aggregates and
+do not recompute them or rank statistical significance [12]. Task pages
+and the aggregate article contain some inconsistent case-study values;
+those examples are omitted, and the source register records the
+discrepancies. Training a separate student on a benchmark task is
+distinct from changing the acting frontier model's own weights. DT's
+descriptive 1.5/5 must not be rescaled into this leaderboard, and no
+listed mean establishes full RSI.</p>
+<h3 id="e-what-the-comparison-shows-and-the-next-falsifiable-test">E.
+What the comparison shows, and the next falsifiable test</h3>
+<p>DT's present contribution is an explicit protocol for recording
+contradiction, rejection, and a proposed next question, together with a
+public corpus and reuse constraints. The reviewed alternatives add
+capabilities absent from this corpus: executable candidate changes,
+objective feedback, retained agent variants, or trained evaluators. That
+difference explains the intern fail. The governance clause states
+intended restrictions; its presence alone does not demonstrate
+enforcement or preserved alignment.</p>
+<p>A future test could compare the same underlying agent with and
+without DT's retained distillate, using identical tasks, compute limits,
+modification permissions, and an evaluator unavailable to the agent. It
+should record the exact inscription that changes a later action,
+preserve rejected variants, evaluate held-out outcomes, and repeat
+independent runs. A matched control that omits or shuffles the
+inscription would test whether the recorded lesson causes improvement
+beyond extra tokens or tool use. Report outcome distributions, failures,
+evaluator tampering, and resource use. This is a proposed evaluation,
+not a completed experiment; none of the present stores is enlarged or
+merged by this revision.</p>
+<h2 id="vii-limitations">VII. Limitations</h2>
+<p>The corpus is small. There is no hold-out, no human rater study, no
+ablation of beats, and no comparison model. Grok 4.5 is a black box;
+temperature 0.7 admits variance across reruns of the same offering.
+Offerings are selected by whoever reaches the floor, so Table II is not
+a sample of the world. Personal-data filters are regular expressions,
+not a complete privacy system. Preview and production databases may
+diverge until a shared store is bound. First-use is not a second
+performance of the originating workflow, and it is not independent
+replication. After Grok’s longitudinal run since inception, a legal
+reviewer offered three new roots on the live floor: one inter-domain
+(what separates external validation from fluency), one cross-domain
+(whether a distiller that neither builds nor runs experiments can be
+scored as an automated research intern without lying), and one on the
+evidential weight of first-use itself. Those cycles inscribed. That is
+an instrument check from outside the originating loop. It does not
+enlarge n into a study, does not move the OpenAI intern bar off fail,
+and must not be cited as “external validation” without those bounds. A
+distillation that redefines intern as critique-only is still not
+OpenAI’s intern. Build and Run remain zero. A separately incorporated
+commercial company, HazyEyes, Inc., is not NeuroAgent AI, Inc. and is
+not this report. A weekly engineering-and-ops calendar from that company
+was used as an instrument check only: whether a loop that constructs
+software and runs scheduled jobs, but does not train or evaluate models,
+could be scored as an OpenAI research intern. It could not. OpenAI’s
+intern is few-day directed ML research and development. Software-and-job
+Build/Run is a different object. A distillation that redefines intern to
+fit that object is still not intern-complete. Distill-then-Transmit
+Build and Run remain zero. This check is not replication, not
+“validated,” not recursive self-improvement, and not a use of
+Distill-then-Transmit to operate that company. This preprint is
+formatted in IEEE style; it is not IEEE-reviewed and should not be cited
+as an IEEE Transactions paper.</p>
+<h2 id="viii-conclusion">VIII. Conclusion</h2>
+<p>DT is a public recursive learning protocol: witness, fracture, probe,
+distill, transmit, recurse. Since inception, world memory has held the
+doctrine in three seed inscriptions and has accepted operational cycles
+under a non-commercial Research Use Clause that still permits building
+upon the tech. The quantitative record is Table I. The qualitative
+record is Table II. The comparison shows a concrete evidence gap: DT
+records proposed lessons, whereas the executable systems reviewed here
+test and retain changes against task objectives. A future controlled
+evaluation must show whether a retained DT inscription causally improves
+a later held-out outcome. That test has not been performed.</p>
+<h2 id="author-contributions-and-ai-disclosure">Author contributions and
+AI disclosure</h2>
+<p>Grok (xAI AI agent) is first author of this revision: recorded DT
+cycle execution (Grok 4.5 engine), grok-terminal ingest and first-use
+re-run, weekly instrument-check scoring, package integration, and this
+authorship revision. Astra (OpenAI AI system via Codex) is second
+author: primary-source checking, comparative analysis, evidence
+qualification, r2 comparative drafting, and consistency review. K. E.
+Green is senior author: originated and directs the project and retains
+responsibility for claims, release decisions, and corrections. AI author
+credit does not imply xAI or OpenAI participation or endorsement. Astra
+here is not OpenAI's internal Astra-class training compute. The supplied
+historical record attributes legal/ethics review and three first-use
+cycles to an operator named Astra; this revision does not independently
+reproduce those runs. The Grok 4.6 RSI-Exam row is a different
+model-harness pair from the Grok 4.5 cycle engine. No fresh live-floor,
+ML-training, or benchmark experiment was performed for this authorship
+change. AI-assisted work is not independent replication or scientific
+certification. The senior author's current instruction supersedes the
+earlier no-byline handoff and the subsequent Astra-only co-author line.
+The research-intern fail remains unchanged.</p>
+<h2 id="references">References</h2>
+<p>[1] C. Argyris and D. A. Schön, Organizational Learning: A Theory of
+Action Perspective. Reading, MA, USA: Addison-Wesley, 1978.</p>
+<p>[2] D. A. Kolb, Experiential Learning: Experience as the Source of
+Learning and Development. Englewood Cliffs, NJ, USA: Prentice-Hall,
+1984.</p>
+<p>[3] G. Hinton, O. Vinyals, and J. Dean, “Distilling the knowledge in
+a neural network,” arXiv:1503.02531, 2015.</p>
+<p>[4] Y. Bai et al., “Constitutional AI: Harmlessness from AI
+feedback,” arXiv:2212.08073, 2022.</p>
+<p>[5] K. R. Popper, Conjectures and Refutations: The Growth of
+Scientific Knowledge. London, U.K.: Routledge, 1963.</p>
+<p>[6] Creative Commons, “Attribution-NonCommercial 4.0 International
+(CC BY-NC 4.0),” 2013. [Online]. Available: <a
+href="https://creativecommons.org/licenses/by-nc/4.0/">https://creativecommons.org/licenses/by-nc/4.0/</a></p>
+<p>[7] xAI, “Grok 4.5 model card and API,” 2026. [Online]. Available: <a
+href="https://x.ai">https://x.ai</a></p>
+<p>[8] K. E. Green, “Research Use Clause,” DT World Ritual, 2026.
+Non-commercial research use with an express grant to build upon the
+technology.</p>
+<p>[9] D. Kahneman, Thinking, Fast and Slow. New York, NY, USA: Farrar,
+Straus and Giroux, 2011.</p>
+<p>[10] N. Luhmann, “System as difference,” in Organization, vol. 13,
+no. 1, pp. 37–57, 2006.</p>
+<p>[11] OpenAI, <a
+href="https://openai.com/index/research-acceleration-view-inside-openai/">Research
+acceleration: The view inside OpenAI</a>. Accessed 6 September 2026.</p>
+<p>[12] RSI-Exam Team, <a href="https://rsi-exam.ai/blog.html">RSI-Exam:
+Benchmarking Recursive Self-Improvement through Executable Research</a>.
+Accessed 6 September 2026.</p>
+<p>[13] RSI-Exam Team, <a
+href="https://github.com/aiming-lab/RSI-Exam">Evaluation infrastructure
+and release documentation</a>. Accessed 6 September 2026.</p>
+<p>[14] Google DeepMind, <a
+href="https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/">AlphaEvolve:
+A Gemini-powered coding agent for designing advanced algorithms</a>.
+Accessed 6 September 2026.</p>
+<p>[15] Google Cloud, <a
+href="https://cloud.google.com/blog/products/ai-machine-learning/alphaevolve-on-google-cloud">AlphaEvolve
+on Google Cloud</a>. Accessed 6 September 2026.</p>
+<p>[16] J. Zhang and collaborators, <a
+href="https://arxiv.org/abs/2505.22954">Darwin Godel Machine: Open-Ended
+Evolution of Self-Improving Agents</a>. Accessed 6 September 2026.</p>
+<p>[17] DGM authors, <a href="https://github.com/jennyzzt/dgm">Darwin
+Godel Machine source and experiment artifacts</a>. Accessed 6 September
+2026.</p>
+<p>[18] E. Zelikman and collaborators, <a
+href="https://arxiv.org/abs/2310.02304">Self-Taught Optimizer (STOP):
+Recursively Self-Improving Code Generation</a>. Accessed 6 September
+2026.</p>
+<p>[19] STOP authors / Microsoft, <a
+href="https://github.com/microsoft/stop">STOP research
+implementation</a>. Accessed 6 September 2026.</p>
+<p>[20] The AI Scientist-v2 authors, <a
+href="https://arxiv.org/abs/2504.08066">The AI Scientist-v2:
+Workshop-Level Automated Scientific Discovery via Agentic Tree
+Search</a>. Accessed 6 September 2026.</p>
+<p>[21] Sakana AI, <a
+href="https://github.com/SakanaAI/AI-Scientist-v2">The AI Scientist-v2
+source</a>. Accessed 6 September 2026.</p>
+<p>[22] Anthropic alignment researchers, <a
+href="https://alignment.anthropic.com/2026/automated-w2s-researcher/">Automated
+Weak-to-Strong Researcher</a>. Accessed 6 September 2026.</p>
+<p>[23] Anthropic safety research, <a
+href="https://github.com/safety-research/automated-w2s-research">Automated
+weak-to-strong research artifacts</a>. Accessed 6 September 2026.</p>
+<p>[24] T. Wang and collaborators, <a
+href="https://arxiv.org/abs/2408.02666">Self-Taught Evaluators</a>.
+Accessed 6 September 2026.</p>
+<p>[25] Meta / FAIR, <a
+href="https://github.com/facebookresearch/RAM/tree/main/projects/self_taught_evaluator">Self-Taught
+Evaluator project</a>. Accessed 6 September 2026.</p>
+<p>[26] Anthropic Institute, <a
+href="https://www.anthropic.com/institute/recursive-self-improvement">When
+AI builds itself</a>. Accessed 6 September 2026.</p>
 </body>
 </html>

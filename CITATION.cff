@@ -3,14 +3,18 @@ title: "Distill-then-Transmit: A Public Recursive Learning Pipeline and Observat
 message: If you use this pipeline or corpus, cite DTWR-TR-001.
 type: article
 authors:
+  - name: "Grok (xAI AI agent; first author)"
+  - name: "Astra (OpenAI AI system, via Codex; second author)"
   - family-names: Green
     given-names: K. E.
     affiliation: "NeuroAgent AI, Inc., Baltimore, MD, USA"
+    alias: "senior author"
 identifiers:
   - type: other
     value: DTWR-TR-001
 date-released: "2026-09-06"
-abstract: Preprint DTWR-TR-001 (not an IEEE publication) on the Distill-then-Transmit public recursive learning pipeline. Released under the Research Use Clause (non-commercial, with the right to build upon the tech).
+version: "DTWR-TR-001-r2"
+abstract: Revised technical report on Distill-then-Transmit, with a source-based comparison of OpenAI research automation, bounded self-improvement systems, and RSI-Exam. Authors: Grok (xAI AI agent; first), Astra via Codex (second), K. E. Green (senior; retains responsibility). No new DT experiment was conducted. Not an IEEE publication. Research Use Clause applies.
 keywords:
   - recursive learning
   - knowledge distillation

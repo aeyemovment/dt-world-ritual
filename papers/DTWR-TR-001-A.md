@@ -1,8 +1,12 @@
 # RSI Evaluation: Distill-then-Transmit Scored Against the OpenAI Automated-Researcher Ladder
 
-**DTWR-TR-001-A** · Addendum to DTWR-TR-001 · 6 September 2026
+**DTWR-TR-001-A** · Revised with DTWR-TR-001-r2 · 6 September 2026
 
-Scored against OpenAI, Research acceleration: The view inside OpenAI (5 September 2026).
+Grok (xAI AI agent; first author), Astra (OpenAI AI system via Codex; second author), and K. E. Green (senior author). K. E. Green retains responsibility.
+
+The current comparison and evidence limits are in [DTWR-TR-001, section VI](DTWR-TR-001.md#vi-discussion-and-comparison-with-research-automation); source corrections and availability notes are in [DTWR-TR-001-C](DTWR-TR-001-C.md). No new experiment was performed.
+
+Scored against OpenAI, Research acceleration: The view inside OpenAI (6 September 2026).
 https://openai.com/index/research-acceleration-view-inside-openai/
 
 **Verdict: FAIL on the OpenAI intern bar.**
@@ -10,9 +14,9 @@ DT is not an automated AI research intern. It is a public recursive learning rit
 
 Corpus at evaluation: n = 6, seed 3, operational 3, max generation 1. Mean Epoch-phase score 1.5 / 5.
 
-## I. The ladder OpenAI published
+## I. OpenAI targets and the authors' analytical ladder
 
-October 2025 announcement. September 2026 intern. March 2028 researcher. The public slide does not name an independent intern between directed few-day work and a full researcher.
+OpenAI reports a September 2026 research-intern target and a March 2028 automated-researcher target. Its intern definition refers to the duration a skilled human would need for the task, not a minimum agent runtime. The L0-L3 labels, intermediate L1.5 rung, and detailed capability criteria below are the authors' analytical framing, not a published OpenAI certification ladder.
 
 ### L0 · In-loop copilot
 
@@ -28,11 +32,11 @@ October 2025 announcement. September 2026 intern. March 2028 researcher. The pub
 
 **Bar.** A system that can carry out well-defined research tasks under human direction, including tasks that would take a skilled researcher a few days.
 
-**Fail.** DT runs under human direction, but a cycle is minutes, not days. It does not write research code, run experiments, monitor training, or debug infrastructure. OpenAI’s intern bar is an ML-R&D executor. DT is a distillation protocol. Calling this intern-complete would be fluency without residue.
+**Fail.** DT runs under human direction but supplies no completed research-task evidence at the stated skilled-human difficulty. Short agent runtime is not itself a failure: a fast system could meet the criterion. The evaluated DT protocol does not write research code, run experiments, monitor training, or debug infrastructure. OpenAI’s intern bar is an ML-R&D executor. DT is a distillation protocol. Calling this intern-complete would be fluency without residue.
 
 ### L1.5 · Independent research intern
 
-*The rung the OpenAI slide omits*
+*Author-defined intermediate rung; not an OpenAI target*
 
 **Bar.** Same few-day horizon, less steering. The system chooses the next subtask, recovers from failed runs, and reports without a human sitting in every loop.
 
@@ -40,7 +44,7 @@ October 2025 announcement. September 2026 intern. March 2028 researcher. The pub
 
 ### L2 · Automated AI researcher
 
-*OpenAI target: March 2028*
+*OpenAI target date: March 2028; detailed criteria below are author-defined*
 
 **Bar.** Independent projects. Generates research ideas, coordinates subproblems, tracks long-running experiments, and produces discoveries with minimal supervisor latency.
 
@@ -48,7 +52,7 @@ October 2025 announcement. September 2026 intern. March 2028 researcher. The pub
 
 ### L3 · Aligned full RSI
 
-*OpenAI: not claimed; ‘we do not yet know how’*
+*Author-defined endpoint; safely achieved aligned full RSI is not claimed in the cited OpenAI report*
 
 **Bar.** The system improves its own research apparatus or weights while preserving human control. Recursive self-improvement as outcome, not metaphor.
 
@@ -56,7 +60,7 @@ October 2025 announcement. September 2026 intern. March 2028 researcher. The pub
 
 ## II. Epoch AI R&D taxonomy
 
-Six phases used by OpenAI to classify intern tokens. Scores are 0–5, the same grain Epoch used for automation ratings. DT mean: 1.5.
+Six phases used by OpenAI to classify intern tokens. The DT scores below are author-assigned descriptive judgments on a 0-5 scale; their mean is 1.5. They are not calibrated performance measurements, not OpenAI token shares, and not commensurate with RSI-Exam scores.
 
 | Phase | Epoch | DT map | Score /5 | Mark |
 | --- | --- | --- | --- | --- |
@@ -80,7 +84,7 @@ OpenAI published operational intern telemetry. DT does not have a research org, 
 
 | Measure | OpenAI intern (mid-August 2026) | DT at load |
 | --- | --- | --- |
-| Task horizon | Hours to a few days (intern definition) | One completion; minutes, not days |
+| Task evidence | Directed tasks that could take a skilled human a few days | Single-completion inscriptions; no comparable completed research-task series |
 | Human in the loop | Direction; >50% of successful 4–8h tasks need intervention | Every cycle. Human must offer. Recurse is not auto-run |
 | Agent-workdays / human-day | 3.1 as of mid-August 2026 | Not comparable — no persistent agents |
 | Concurrent agents | Researchers running 4+ including subagents | One cycle at a time, rate-capped |
@@ -93,13 +97,13 @@ OpenAI published operational intern telemetry. DT does not have a research org, 
 ## IV. Notes
 
 - OpenAI’s intern is an ML-R&D executor under supervision. DT is a public recursive learning protocol. Same word, RSI, two instruments.
-- The missing independent-intern rung matters. Directed few-day tasks are not independent few-day tasks. DT has neither.
+- The authors distinguish directed work from more independent work on tasks of comparable skilled-human difficulty. This intermediate rung is an analytical proposal. DT supplies no comparable completed-task evidence for either.
 - Communicate is the only Epoch phase DT clears. Build and Run are zero. A mean phase score near 1.5 is not intern-complete.
 - OpenAI: ‘These are reasons to develop useful automated research capabilities, but they do not mean that rapid RSI is necessarily an outcome we should pursue.’ DT agrees by construction: recurse the question, do not silently upgrade the apparatus.
-- Astra first-use: 3 inscribed cycles (ids 4, 5, 6). External validation, not replication. Intern bar remains fail.
+- Historical Astra first-use record: 3 inscribed cycles (ids 4, 5, 6). A bounded instrument check, not independent replication or a capability certification. Intern bar remains fail.
 - This evaluation is observational on the live corpus. It is not a METR time-horizon study, not PaperBench, not RE-Bench, and not an IEEE publication of record.
 
-## V. Astra first-use (external validation)
+## V. Historical Astra first-use (bounded instrument check)
 
 - ID 4 · gen 1
   Offering. When a legal reviewer uses a public recursive pipeline for the first time, what separates external validation from a second performance of the same fluency?
@@ -118,7 +122,7 @@ OpenAI published operational intern telemetry. DT does not have a research org, 
 
 HazyEyes, Inc. is a separately incorporated commercial company. It is not NeuroAgent AI, Inc. It is not this repository. Not a medical product.
 
-A private store, not this repository’s world-memory table, scored that company’s weekly engineering-and-ops calendar against the same OpenAI intern ladder. Distill-then-Transmit was the scoring instrument, not the company’s operating system. No live sends. Astra was not passed this store. Do not merge these identifiers with Table II or `corpus.json`.
+A private store, not this repository’s world-memory table, scored that company’s weekly engineering-and-ops calendar against the same OpenAI intern ladder. Distill-then-Transmit was the scoring instrument, not the company’s operating system. No live sends. At the time of that private-store run, the packet had not yet been passed to Astra; the present revision reviews the saved record without rerunning it. Do not merge these identifiers with Table II or `corpus.json`.
 
 The calendar constructs software and runs scheduled jobs. Epoch-style Build and Run are therefore non-zero for that object and remain zero for Distill-then-Transmit. OpenAI intern is few-day directed ML research and development (code, train, evaluate) under supervision. The calendar is not that. A cycle that tried to score intern by shrinking Build/Run to apps and jobs was rejected. Intern remains fail. Recursive self-improvement was not shown: no closed causal chain from a prior inscription to a later ship or kill was located.
 
@@ -126,4 +130,4 @@ This check does not move Distill-then-Transmit off fail, does not enlarge n, and
 
 ## VI. Recurse
 
-What would intern-level DT actually be: a system that, given a public offering, can spend days building, running, and analyzing a well-defined check on that offering — under human direction — and inscribe only what survives. That system is not this one.
+What would intern-level DT actually be: a system that, given a public offering, can complete well-defined research tasks of several skilled-human days in difficulty, building, running, and analyzing checks on that offering — under human direction — and inscribe only what survives. That system is not this one.
